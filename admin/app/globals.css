@@ -1,0 +1,105 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  background: #0a0a0a;
+  color: #ffffff;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Rainbow gradient text */
+.rainbow-text {
+  background: linear-gradient(90deg, #ef4444, #f97316, #eab308, #22c55e, #3b82f6, #a855f7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+/* 4px rainbow bar — use as an explicit first child inside cards */
+.rainbow-bar {
+  display: block;
+  height: 4px;
+  flex-shrink: 0;
+  background: linear-gradient(90deg, #ef4444, #f97316, #eab308, #22c55e, #3b82f6, #a855f7);
+}
+
+/* Cards — no ::before, no padding — always wrap content in an inner div */
+.card {
+  background: #111111;
+  border: 1px solid rgba(245, 197, 66, 0.1);
+  box-shadow: 0 0 24px rgba(245, 197, 66, 0.04), 0 1px 4px rgba(0, 0, 0, 0.8);
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.card-subtle {
+  background: #111111;
+  border: 1px solid #1e1e1e;
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.card-gold {
+  background: #111111;
+  border: 1px solid rgba(245, 197, 66, 0.28);
+  box-shadow: 0 0 40px rgba(245, 197, 66, 0.08), 0 1px 4px rgba(0, 0, 0, 0.8);
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+/* Gold CTA button */
+.btn-gold {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #F5C542;
+  color: #0a0a0a;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.01em;
+  border-radius: 9px;
+  padding: 9px 18px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.15s ease, box-shadow 0.15s ease, transform 0.1s ease;
+  box-shadow: 0 1px 8px rgba(245, 197, 66, 0.25);
+}
+
+.btn-gold:hover   { background: #f0bc2e; box-shadow: 0 2px 16px rgba(245,197,66,0.35); transform: translateY(-1px); }
+.btn-gold:active  { transform: translateY(0); background: #e6b220; }
+.btn-gold:disabled { opacity: 0.45; cursor: not-allowed; transform: none; box-shadow: none; }
+
+/* Dark input fields */
+.input-dark {
+  background: #1a1a1a;
+  border: 1px solid #2a2a2a;
+  color: #ffffff;
+  border-radius: 9px;
+  padding: 10px 14px;
+  font-size: 14px;
+  width: 100%;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  outline: none;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.input-dark:focus {
+  border-color: rgba(245, 197, 66, 0.35);
+  box-shadow: 0 0 0 3px rgba(245, 197, 66, 0.08);
+}
+
+.input-dark::placeholder { color: #3f3f46; }
+
+/* Gold amount text */
+.amount {
+  color: #F5C542;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}

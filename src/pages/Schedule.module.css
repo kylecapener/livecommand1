@@ -1,0 +1,486 @@
+.page {
+  min-height: calc(100vh - 56px);
+  background: var(--bg);
+  padding: 32px 24px 64px;
+}
+
+.container {
+  max-width: 780px;
+  margin: 0 auto;
+}
+
+/* Day navigation */
+.dayNav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 28px;
+  gap: 12px;
+}
+
+.dayNavLeft {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.navArrow {
+  width: 28px;
+  height: 28px;
+  border-radius: 7px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  color: var(--t2);
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s;
+  line-height: 1;
+}
+
+.navArrow:hover { border-color: var(--border-strong); color: var(--t1); }
+
+.todayReset {
+  padding: 4px 10px;
+  border-radius: 6px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  color: var(--t2);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: var(--font);
+  transition: all 0.15s;
+}
+
+.todayReset:hover { color: var(--t1); border-color: var(--border-strong); }
+
+.dayLabel {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.4px;
+  color: var(--t1);
+}
+
+.signInCta {
+  padding: 8px 18px;
+  border-radius: 20px;
+  background: var(--purple);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  transition: opacity 0.15s;
+  white-space: nowrap;
+}
+
+.signInCta:hover { opacity: 0.85; }
+
+/* Tabs */
+.tabs {
+  display: flex;
+  gap: 2px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 24px;
+}
+
+.tab {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 16px;
+  border: none;
+  background: transparent;
+  color: var(--t3);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  font-family: var(--font);
+  transition: color 0.15s;
+}
+
+.tab:hover { color: var(--t1); }
+
+.tabOn {
+  color: var(--t1);
+  border-bottom-color: var(--purple);
+}
+
+.tabCount {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  border-radius: 10px;
+  background: var(--purple-soft);
+  color: var(--purple);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+/* Empty state */
+.empty {
+  padding: 64px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.emptyLabel { font-size: 16px; color: var(--t2); }
+.emptyHint { font-size: 13px; color: var(--t3); }
+
+/* Today cards */
+.todayCards {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.todayCard {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 22px 24px;
+  cursor: pointer;
+  transition: border-color 0.2s, transform 0.15s, background 0.15s;
+}
+
+.todayCard:hover {
+  border-color: var(--border-strong);
+  background: var(--card-hover);
+  transform: translateY(-1px);
+}
+
+.todayCardConfirmed { border-color: rgba(74,222,128,0.25); }
+
+.todayCardTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.todayTime {
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: -0.8px;
+  color: var(--t1);
+}
+
+.todayMeta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ruleIcon { font-size: 16px; }
+
+.formatTag {
+  padding: 3px 10px;
+  border-radius: 20px;
+  background: rgba(168,85,247,0.15);
+  color: var(--purple);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+
+.typeTag { font-size: 14px; }
+
+/* Creator pill layouts */
+.creatorPill {
+  padding: 0 16px;
+  height: 38px;
+  border-radius: 19px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+  white-space: nowrap;
+}
+
+.pillConfirmed {
+  box-shadow: 0 0 0 2px rgba(22,163,74,0.5);
+}
+
+.teamsRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.teamSide {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.vsLabel {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--t3);
+  letter-spacing: 1px;
+  flex-shrink: 0;
+}
+
+.ffaRow {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+/* Week section */
+.weekSection {
+  margin-top: 48px;
+}
+
+.weekHeader {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.weekLabel {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--t3);
+  white-space: nowrap;
+}
+
+.weekDivider {
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+.weekGroups {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.weekGroup {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.weekDayHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  width: 48px;
+  flex-shrink: 0;
+  padding-top: 12px;
+}
+
+.weekDayName {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: var(--t3);
+}
+
+.weekDayDate {
+  font-size: 12px;
+  color: var(--t3);
+}
+
+.weekCards {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.weekCard {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 14px 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.weekCard:hover {
+  border-color: var(--border-strong);
+  background: var(--card-hover);
+}
+
+.weekCardTime {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--t1);
+  letter-spacing: -0.3px;
+  min-width: 68px;
+}
+
+.weekPills {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+  flex: 1;
+}
+
+.weekPill {
+  padding: 0 10px;
+  height: 26px;
+  border-radius: 13px;
+  display: flex;
+  align-items: center;
+  font-size: 11px;
+  font-weight: 700;
+  color: #fff;
+  white-space: nowrap;
+}
+
+.weekCardMeta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+}
+
+.weekFormat {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--t3);
+  letter-spacing: 0.3px;
+}
+
+.weekRules {
+  font-size: 12px;
+  color: var(--t3);
+}
+
+/* Open Series */
+.openCards {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.openCard {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 20px 22px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  transition: border-color 0.2s, background 0.15s, transform 0.15s;
+}
+
+.openCard:hover {
+  border-color: var(--border-strong);
+  background: var(--card-hover);
+  transform: translateY(-1px);
+}
+
+.openCardTop {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.openCardLeft {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.openTime {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.6px;
+  color: var(--t1);
+}
+
+.openOrgRow {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.openOrgLabel { font-size: 12px; color: var(--t3); }
+.openOrgName { font-size: 12px; font-weight: 600; color: var(--t2); }
+
+.openCardRight {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.openPillsRow {
+  display: flex;
+  gap: 7px;
+  flex-wrap: wrap;
+}
+
+.openPill {
+  padding: 0 14px;
+  height: 34px;
+  border-radius: 17px;
+  display: flex;
+  align-items: center;
+  font-size: 13px;
+  font-weight: 700;
+  color: #fff;
+  white-space: nowrap;
+}
+
+.openCardFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.openSpots { font-size: 12px; color: var(--t3); font-weight: 600; }
+
+.openJoinBtn {
+  padding: 8px 18px;
+  border-radius: 20px;
+  border: none;
+  background: var(--purple);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: var(--font);
+  transition: opacity 0.15s;
+  white-space: nowrap;
+}
+
+.openJoinBtn:hover:not(:disabled) { opacity: 0.85; }
+.openJoinBtn:disabled { cursor: default; }
+.openJoinBtnGuest { background: var(--t3); }
+.openJoinBtnPending { background: var(--amber); }
+.openJoinBtnIn { background: var(--green); }
+.openJoinBtnDenied { background: var(--red); }
+
+.signInLink { color: var(--purple); font-weight: 600; }
+
+@media (max-width: 500px) {
+  .teamsRow { flex-direction: column; gap: 10px; }
+  .teamSide { justify-content: flex-start !important; }
+  .vsLabel { align-self: flex-start; }
+}
