@@ -100,6 +100,25 @@ export function AppProvider({ children }) {
   useEffect(() => {
     loadCreators()
     loadSeries()
+
+    const seriesSub = supabase
+      .channel('series-changes')
+      .on('postgres_changes', { event: '*', schema: 'public', table: 'series' }, () => {
+        loadSeries()
+      })
+      .subscribe()
+
+    const requestsSub = supabase
+      .channel('requests-changes')
+      .on('postgres_changes', { event: '*', schema: 'public', table: 'join_requests' }, () => {
+        loadJoinRequests()
+      })
+      .subscribe()
+
+    return () => {
+      supabase.removeChannel(seriesSub)
+      supabase.removeChannel(requestsSub)
+    }
   }, [])
 
   useEffect(() => {
