@@ -9,12 +9,14 @@ import Creators from './pages/Creators'
 import Requests from './pages/Requests'
 
 function ProtectedRoute({ children }) {
-  const { user } = useApp()
+  const { user, loading } = useApp()
+  if (loading) return null
   return user ? children : <Navigate to="/login" replace />
 }
 
 function HomeRedirect() {
-  const { user } = useApp()
+  const { user, loading } = useApp()
+  if (loading) return null
   return <Navigate to={user ? '/dashboard' : '/battles'} replace />
 }
 

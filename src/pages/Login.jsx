@@ -16,8 +16,7 @@ export default function Login() {
     if (!email.includes('@')) { setError('Enter a valid email'); return }
     if (password.length < 6) { setError('Password must be at least 6 characters'); return }
     setLoading(true)
-    await new Promise(r => setTimeout(r, 700))
-    const result = login({ email, password })
+    const result = await login({ email, password })
     setLoading(false)
     if (result?.error) { setError(result.error); return }
     navigate('/dashboard')

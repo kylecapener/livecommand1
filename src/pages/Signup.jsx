@@ -27,8 +27,9 @@ export default function Signup() {
     if (!form.email.includes('@')) { setError('Enter a valid email'); return }
     if (form.password.length < 6) { setError('Password must be at least 6 characters'); return }
     setLoading(true)
-    await new Promise(r => setTimeout(r, 700))
-    signup({ name: form.name.trim(), email: form.email.trim(), password: form.password, phone: form.phone.trim(), timezone: form.timezone, smsOptIn: form.smsOptIn })
+    const result = await signup({ name: form.name.trim(), email: form.email.trim(), password: form.password, phone: form.phone.trim(), timezone: form.timezone, smsOptIn: form.smsOptIn })
+    setLoading(false)
+    if (result?.error) { setError(result.error); return }
     navigate('/dashboard')
   }
 
