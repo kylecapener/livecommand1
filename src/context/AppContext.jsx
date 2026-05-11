@@ -136,7 +136,7 @@ export function AppProvider({ children }) {
   }
 
   async function loadCreators() {
-    const { data } = await supabase.from('profiles').select('id, name, email, timezone')
+    const { data } = await supabase.from('profiles').select('id, name, email, phone, timezone, sms_opt_in')
     if (data) setCreators(data.map(mapProfile))
   }
 

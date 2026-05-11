@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { useApp } from '../context/AppContext'
 import styles from './Creators.module.css'
 
@@ -23,6 +24,7 @@ function shortTz(tz) {
 
 export default function Creators() {
   const { creators } = useApp()
+  const [selected, setSelected] = useState(null)
 
   return (
     <div className={styles.page}>
@@ -36,7 +38,7 @@ export default function Creators() {
           {creators.map((c, i) => {
             const [from, to] = AVATAR_COLORS[i % AVATAR_COLORS.length]
             return (
-              <div key={c.id} className={styles.card}>
+              <div key={c.id} className={styles.card} onClick={() => setSelected(c)} style={{ cursor: 'pointer' }}>
                 <div className={styles.avatar} style={{ background: `linear-gradient(135deg,${from},${to})` }}>
                   {initials(c.name)}
                 </div>
@@ -50,6 +52,38 @@ export default function Creators() {
           })}
         </div>
       </div>
+
+      {selected && (
+        <div className={styles.overlay} onClick={() => setSelected(null)}>
+          <div className={styles.modal} onClick={e => e.stopPropagation()}>
+            <button className={styles.closeBtn} onClick={() => setSelected(null)}>✕</button>
+            <div className={styles.modalAvatar} style={{
+              background: `linear-gradient(135deg,${AVATAR_COLORS[creators.indexOf(selected) % AVATAR_COLORS.length][0]},${AVATAR_COLORS[creators.indexOf(selected) % AVATAR_COLORS.length][1]})`
+            }}>
+              {initials(selected.name)}
+            </div>
+            <h2 className={styles.modalName}>{selected.name}</h2>
+            <div className={styles.detailList}>
+              <div className={styles.detailRow}>
+                <span className={styles.detailLabel}>Email</span>
+                <span className={styles.detailValue}>{selected.email || '—'}</span>
+              </div>
+              <div className={styles.detailRow}>
+                <span className={styles.detailLabel}>Phone</span>
+                <span className={styles.detailValue}>{selected.phone || '—'}</span>
+              </div>
+              <div className={styles.detailRow}>
+                <span className={styles.detailLabel}>Timezone</span>
+                <span className={styles.detailValue}>{selected.timezone}</span>
+              </div>
+              <div className={styles.detailRow}>
+                <span className={styles.detailLabel}>SMS alerts</span>
+                <span className={styles.detailValue}>{selected.smsOptIn ? 'On' : 'Off'}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }
