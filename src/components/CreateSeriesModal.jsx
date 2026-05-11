@@ -67,10 +67,7 @@ export default function CreateSeriesModal({ prefill, onClose, onCreated }) {
     const errs = {}
     if (!date) errs.date = 'Pick a date'
     if (!time) errs.time = 'Pick a time'
-    if (type === 'private' && othersSelected.length < maxOthers) {
-      errs.creators = `Select ${maxOthers - othersSelected.length} more creator${maxOthers - othersSelected.length > 1 ? 's' : ''}`
-    }
-    if (type === 'private' && format === '2v2') {
+    if (format === '2v2' && selectedIds.length === 4) {
       const tA = selectedIds.filter(id => (teams[id] ?? 'A') === 'A').length
       const tB = selectedIds.filter(id => (teams[id] ?? 'A') === 'B').length
       if (tA !== 2 || tB !== 2) errs.teams = 'Assign 2 creators to each team'
@@ -90,11 +87,8 @@ export default function CreateSeriesModal({ prefill, onClose, onCreated }) {
       B: selectedIds.filter(id => (teams[id] ?? 'A') === 'B'),
     } : null
 
-    // For public series, only include organizer initially
-    const ids = type === 'public' ? (user ? [user.id] : []) : selectedIds
-
-    const s = createSeries({
-      creatorIds: ids, format,
+    const s = await createSeries({
+      creatorIds: selectedIds, format,
       teams: builtTeams,
       ...rules, type, date, time,
     })
@@ -179,8 +173,8 @@ export default function CreateSeriesModal({ prefill, onClose, onCreated }) {
             </div>
           </div>
 
-          {/* Creator picker (private only) */}
-          {type === 'private' && (
+          {/* Creator picker */}
+          {(
             <div className={styles.field}>
               <label className={styles.fieldLabel}>
                 Creators
